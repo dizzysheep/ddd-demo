@@ -3,14 +3,14 @@ package service
 import (
 	"ddd-demo/app/application/dto"
 	"ddd-demo/domain/entity"
-	"ddd-demo/domain/repository"
+	repository2 "ddd-demo/infrastructure/repository"
 )
 
 type UserServiceImpl struct {
-	userRepository repository.UserRepository
+	userRepository *repository2.UserRepositoryImpl
 }
 
-func NewUserService(userService repository.UserRepository) *UserServiceImpl {
+func NewUserService(userService *repository2.UserRepositoryImpl) *UserServiceImpl {
 	return &UserServiceImpl{userRepository: userService}
 }
 

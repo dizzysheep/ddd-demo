@@ -1,9 +1,7 @@
 package router
 
 import (
-	"ddd-demo/app/application/service"
-	"ddd-demo/app/interfaces/controller"
-	"ddd-demo/infrastructure/repository"
+	"ddd-demo/app/application/inject"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -13,16 +11,11 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 
 	userGroup := r.Group("/v1")
 	{
-		userRepo := repository.NewUserRepository(db)
-		userService := service.NewUserService(userRepo)
-		userController := controller.NewUserController(userService)
+		userController := inject.InitializeUserController(db)
 		userController.RegisterRoutes(userGroup)
 
-		orderRepo := repository.NewOrderRepository(db)
-		orderService := service.NewOrderService(orderRepo)
-		orderController := controller.NewOrderController(orderService)
+		orderController := inject.InitializeOrderController(db)
 		orderController.RegisterRoutes(userGroup)
-
 	}
 
 	return r

@@ -2,7 +2,7 @@ package service
 
 import (
 	"ddd-demo/domain/entity"
-	"ddd-demo/domain/repository"
+	repository2 "ddd-demo/infrastructure/repository"
 	"errors"
 )
 
@@ -10,10 +10,10 @@ var ErrOrderNotFound = errors.New("order not found")
 var ErrOrderAlreadyPaid = errors.New("order already paid")
 
 type OrderServiceImpl struct {
-	orderRepo repository.OrderRepository
+	orderRepo *repository2.OrderRepositoryImpl
 }
 
-func NewOrderService(orderRepo repository.OrderRepository) *OrderServiceImpl {
+func NewOrderService(orderRepo *repository2.OrderRepositoryImpl) *OrderServiceImpl {
 	return &OrderServiceImpl{
 		orderRepo: orderRepo,
 	}

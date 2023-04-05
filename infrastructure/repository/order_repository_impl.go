@@ -2,7 +2,6 @@ package repository
 
 import (
 	"ddd-demo/domain/entity"
-	"ddd-demo/domain/repository"
 	"gorm.io/gorm"
 )
 
@@ -12,7 +11,7 @@ type OrderRepositoryImpl struct {
 	db *gorm.DB
 }
 
-func NewOrderRepository(db *gorm.DB) repository.OrderRepository {
+func NewOrderRepository(db *gorm.DB) *OrderRepositoryImpl {
 	return &OrderRepositoryImpl{
 		db: db,
 	}
